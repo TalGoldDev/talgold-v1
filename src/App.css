@@ -1,22 +1,124 @@
 .App {
-  text-align: center;
+
+  margin: 50px auto;
+  padding: 5px;
+  max-width: 640px;
+  background: #fff;
+  color: #000;
+  font-family: 'Roboto Mono', monospace;
 }
 
-.App-logo {
-  height: 40vmin;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header-section {
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  flex-wrap: wrap;
+
 }
 
-.App-link {
-  color: #09d3ac;
+.header-section .header-frame{
+  max-width: 340px;
+  display: block;
+
+}
+
+.header-section .header-frame h1{
+  font-weight:400;
+  margin: 0;
+  display: block;
+  font-size: 2em;
+}
+
+.header-section .header-frame h2{
+  color: #96979c;
+  font-weight: 300;
+  margin: 0 0 0.5em 0;
+  font-size: 1.5em;
+}
+
+.header-section .img-frame{
+  position: relative;
+  margin: 0 0 10px 0;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.header-section .img-frame img{
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+}
+
+.links {
+  font-size:1.22em;
+  margin: 25px 0;
+  overflow:hidden;
+  width: 100%
+}
+
+.links div{
+  display: block;
+}
+
+.links a:not(:last-child){
+  padding: 0 20px 0 0;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.bio {
+}
+
+.bio div{
+  display: block;
+}
+
+.bio .toggler{
+  padding-bottom: 30px;
+}
+.bio .toggler .toggler-buttons button{
+  background: #fff;
+  width: 120px;
+  height: 30px;
+  margin-right: 15px;
+  border: 2px solid #10a2f5;
+  border-radius: 15px;
+  box-sizing: border-box;
+  color: #10a2f5;
+  font-size: 1rem;
+  overflow: auto;
+  transition: 0.4s ease all;
+}
+
+.bio .toggler .toggler-buttons{
+float: left;
+}
+
+.bio .toggler .download-button{
+float: center;
+}
+
+.bio .toggler .download-button button{
+float: right;
+background: #fff;
+width: 160px;
+height: 30px;
+border: 2px solid #96979c;
+border-radius: 15px;
+box-sizing: border-box;
+font-size: 1rem;
+overflow: auto;
+transition: 0.4s ease all;
+
+border-color: #eb4888;
+color: #eb4888;
+}
+
+.bio .toggler .download-button button a{
+text-decoration: none;
+color: #eb4888;
+}
+
+.bio .bioText{
+  line-height: 24px;
 }

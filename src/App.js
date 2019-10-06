@@ -1,19 +1,57 @@
 import React from 'react';
-import img from './myImage.jpg';
+import img1 from './img/1.png';
+import img2 from './img/2.png';
+import img3 from './img/3.png';
+import img4 from './img/4.png';
+
+import cv from './cv.pdf';
 import './App.css';
 
+
+class ImageFrame extends React.Component {
+  constructor(props){
+    super(props);
+    this.state = {
+       time: Date.now(),
+       imgList: [img1, img2, img3, img4],
+       currentImgOnDisplay: img1,
+       counter:0
+      };
+  }
+
+  componentDidMount() {
+    this.interval = setInterval(() => this.setState({
+       time: Date.now(),
+       counter: (this.state.counter+1)%4,
+       currentImgOnDisplay: this.state.imgList[this.state.counter]
+     }), 3200);
+     console.log(this.state.counter);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.interval);
+  }
+
+  render() {
+    return(
+      <div className="img-frame">
+        <img src={this.state.currentImgOnDisplay} />
+      </div>
+    );
+  }
+}
 
 class Header extends React.Component {
   render() {
     return (
           <div className="header-section">
             <div className="header-frame">
-              <h1>Tal Pogorelis</h1>
-              <h2>Software Engineer in Israel</h2>
+              <div className="title">
+                <h1>Tal Pogorelis</h1>
+                <h2>Software Engineer in Israel</h2>
+              </div>
             </div>
-            <div className="img-frame">
-              <img src={img} style={{height:300+"px", width:400+"px"}} />
-            </div>
+            <ImageFrame/>
           </div>
       );
   }
@@ -23,10 +61,12 @@ class Menu extends React.Component {
   render() {
     return (
         <div className="links">
-          <a href="https://www.facebook.com/tal.pogorelis">facebook</a>
-          <a href="https://github.com/VirgoA">github</a>
-          <a href="https://www.linkedin.com/in/virgoa/">linkedin</a>
-          <a href="mailto:talpogorelis@gmail.com">email</a>
+          <a href="https://www.facebook.com/tal.pogorelis" style={{color: "#eb4888"}} >facebook</a>
+          <a href="https://github.com/VirgoA" style={{color: "#10a2f5"}}>github</a>
+          <a href="https://www.linkedin.com/in/virgoa/" style={{color: "#e9bc3f"}}>linkedin</a>
+          <a href="mailto:talpogorelis@gmail.com" style={{color:"#24d05a"}}>email</a>
+          <a href="#" style={{color: "#eb4888"}} >Youtube</a>
+          <a href="#" style={{color: "#10a2f5"}}>Blog</a>
         </div>
       );
   }
@@ -57,9 +97,9 @@ class BioInformation extends React.Component {
     if(this.state.length === 0) {
       return (
         <div key={this.props.length} className="bioText">
-          <p>Hi there! My name is Tal and I'm a Final year student and a developer.
-          <br/> with some experience working in a team and developing mainly in
-          Javascript,<br/> I also enjoy reading, working out and playing music in my free time :)
+          <p>Hi there! My name is Tal and I'm a Computer Science student studying
+           at Bar-ilan University & a Software developer developing mainly scripts & web applications for fun.
+           in my free time I also enjoy reading, working out and playing music :)
           </p>
 
         </div>
@@ -67,13 +107,13 @@ class BioInformation extends React.Component {
     } else {
       return (
         <div key={this.props.length} className="bioText">
-        <p>My name is Tal Pogorelis & I'm a Final year student currently living in Rishon-Lezion.
+        <p>My name is Tal & I'm a Final year student currently living in Rishon-Lezion.
         <br/> Interacting with computers has been my passion ever since I was
-        a young kid. I will not lie - I was initially drawn<br/>
+        a young kid. I will not lie - I was initially drawn
         to them because I fancied computer games. However, the more I operated
-         with computers, the more I began to <br/> appreciate understanding
+         with computers, the more I began to appreciate understanding
          how they work, discovering just how much they can do and the near
-         limitless potential <br/> they hold. </p>
+         limitless potential they hold. </p>
         </div>
       );
     }
@@ -105,8 +145,10 @@ class Bio extends React.Component {
               <button onClick={() => this.onClick(0)}>short</button>
               <button onClick={() => this.onClick(1)}>long</button>
             </div>
-            <div>
-              <button>Download Resume</button>
+            <div className="download-button">
+              <button>
+              <a href={cv} download>Resume</a>
+              </button>
             </div>
           </div>
           <BioInformation ref={this.bioInformationElement}/>
